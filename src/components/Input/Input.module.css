@@ -1,0 +1,3 @@
+.root {
+    @apply border-b-2 w-full outline-none placeholder:text-sm text-gray-400
+}
