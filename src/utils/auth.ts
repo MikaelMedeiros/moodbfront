@@ -4,8 +4,11 @@ export function isTokenExpired(token: string): boolean {
 }
 
 function jwtDecode(token: string): any {
-    console.log(token.split('.')[1]);
-    return JSON.parse(
-        Buffer.from(token.split('.')[1], 'base64').toString('utf8')
-    );
+    if(token.indexOf('.') === -1) {
+        return 1;
+    } else {
+        return JSON.parse(
+            Buffer.from(token.split('.')[1], 'base64').toString('utf8')
+        );
+    }
 }

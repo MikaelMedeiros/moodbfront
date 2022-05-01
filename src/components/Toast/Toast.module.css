@@ -1,0 +1,27 @@
+.card {
+   @apply flex items-center justify-between max-w-xs p-4 bg-white border rounded-md shadow-sm;
+}
+
+.message {
+    @apply ml-3 text-sm font-bold;
+}
+
+.closeButton {
+    @apply inline-flex items-center cursor-pointer;
+}
+
+.success {
+    @apply text-green-500;
+}
+
+.info {
+    @apply text-blue-500;
+}
+
+.warn {
+    @apply text-yellow-400;
+}
+
+.error {
+    @apply text-red-500;
+}

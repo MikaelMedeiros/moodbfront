@@ -17,3 +17,7 @@ export function setCookie(
         secure: process.env.NODE_ENV === 'production'
     });
 }
+
+export function getCookie(key: string){
+    return Cookies.get(key);
+}
