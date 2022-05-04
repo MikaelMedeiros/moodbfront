@@ -6,6 +6,10 @@
     @apply ml-3 text-sm font-bold;
 }
 
+.disapear {
+    @apply opacity-0;
+}
+
 .closeButton {
     @apply inline-flex items-center cursor-pointer;
 }

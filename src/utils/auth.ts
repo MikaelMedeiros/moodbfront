@@ -3,7 +3,7 @@ export function isTokenExpired(token: string): boolean {
     return decoded.exp < Math.floor(Date.now() / 1000)
 }
 
-function jwtDecode(token: string): any {
+export function jwtDecode(token: string): any {
     if(token.indexOf('.') === -1) {
         return 1;
     } else {

@@ -3,27 +3,27 @@ import * as React from 'react';
 import { withAuth } from '../hof/withAuth';
 import http from '../utils/http';
 
-type Props = {
-    
+interface PaginaPrivadaProps {
+    timestamp: string
 };
-const PaginaPrivada: NextPage = (props: Props) => {
+const PaginaPrivada: NextPage<PaginaPrivadaProps> = (props) => {
     return (
         <div>
-           Você está autenticada! 
+           Você está autenticada! {props.timestamp}
         </div>
     );
 };
 
-export const getServerSideProps = withAuth(async (ctx: GetServerSideProps , cookies: any) => {
+export const getServerSideProps = withAuth(async (ctx: GetServerSideProps , cookies: any, user: any) => {
     
-    // const { data } = await http.get("/moodbs/", {
-    //     headers: {
-    //         'token': `${cookies.token}`,
-    //     }
-    // });     
-
+    const { data } = await http.get("/moodbs/", {
+        headers: {
+            'token': `${cookies.token}`,
+        }
+    });
+    
     return {
-        props: {}
+        props: data
     }
 });
 

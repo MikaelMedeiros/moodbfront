@@ -16,15 +16,16 @@ const VariantMap = {
     info: styles.info,
 }
 
-export const Toast = (props: ToastProps) => {
+export const Toast: Component = (props: ToastProps) => {
 
     const {variant = "success", ...otherProperts} = props;
     const classNameCard = styles.card;
     const classNameClose = styles.closeButton;
     const classNameMessage = [styles.message, VariantMap[variant]];
-const test  = <FontAwesomeIcon icon={faWindowClose}/>;
+
     return (
-        <div className={classNameCard}>
+        
+        <div id="toast" className={classNameCard}>
             <div className="flex items-center">
                 {getIcon(variant)}
                 <p className={classNameMessage.join(" ")}>{props.message}</p>

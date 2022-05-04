@@ -1,4 +1,4 @@
-import { isTokenExpired } from "../utils/auth";
+import { isTokenExpired, jwtDecode } from "../utils/auth";
 import { parseCookies } from "../utils/cookies";
 
 export function withAuth(func: any) {
@@ -13,6 +13,16 @@ export function withAuth(func: any) {
                 }
             };
         }
-        return func(context, cookies);
+
+        const user = jwtDecode(cookies.token);
+
+        const result = await func(context, cookies, user);
+        if('props' in result) {
+            result.props = {
+                user, 
+                ...result.props,
+            }
+        }
+        return result
     }
 }
