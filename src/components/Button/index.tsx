@@ -2,6 +2,8 @@
 import * as React from 'react';
 import styles from "././Button.module.css";
 
+import Link from 'next/link';
+
 type variantas = "primary" | "secondary" 
 type ButtonProps = {variant?: variantas} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

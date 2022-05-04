@@ -3,9 +3,9 @@
 }
 
 .primary {
-    @apply  text-gray-500
+    @apply  text-gray-400
 }
 
 .secondary {
-    @apply text-gray-500
+    @apply text-gray-400
 }
