@@ -2,6 +2,7 @@ import * as React from 'react';
 import styles from '././Toast.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose, faCircleInfo, faCircleCheck, faCircleExclamation, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
 
 type variants = "success" | "warn" | "error" | "info"; 
 type ToastProps = {
@@ -16,23 +17,33 @@ const VariantMap = {
     info: styles.info,
 }
 
-export const Toast: Component = (props: ToastProps) => {
+export const Toast: React.FunctionComponent<ToastProps> = (props) => {
 
     const {variant = "success", ...otherProperts} = props;
     const classNameCard = styles.card;
     const classNameClose = styles.closeButton;
     const classNameMessage = [styles.message, VariantMap[variant]];
 
+    const [opacity, setOpacity] = useState('opacity-100');
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        return setOpacity('opacity-0');
+      }, 4000);
+  
+      return () => clearInterval(timer);
+    }, []);
     return (
-        
-        <div id="toast" className={classNameCard}>
-            <div className="flex items-center">
-                {getIcon(variant)}
-                <p className={classNameMessage.join(" ")}>{props.message}</p>
+        <div className={opacity}>
+            <div className={classNameCard}>
+                <div className="flex items-center">
+                    {getIcon(variant)}
+                    <p className={classNameMessage.join(" ")}>{props.message}</p>
+                </div>
+                <span className={classNameClose}>
+                    <FontAwesomeIcon icon={faWindowClose}/>            
+                </span>
             </div>
-            <span className={classNameClose}>
-                <FontAwesomeIcon icon={faWindowClose}/>            
-            </span>
         </div>
     );
 };
