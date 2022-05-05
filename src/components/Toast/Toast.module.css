@@ -1,5 +1,9 @@
 .card {
-   @apply flex items-center justify-between max-w-xs p-4 bg-white border rounded-md shadow-sm;
+    @apply flex items-center justify-between max-w-xs p-4 bg-white border rounded-md shadow-sm;
+}
+
+.toastContainer {
+    @apply fixed w-full bottom-5 left-0;
 }
 
 .message {
