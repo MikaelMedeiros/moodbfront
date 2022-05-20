@@ -2,8 +2,8 @@ import axios from 'axios';
 import { getCookie } from './cookies';
 
 const url = process.env.BASE_URL || 
-//'https://moodb-app.herokuapp.com'
-'http://localhost:8080';
+'https://moodb-app.herokuapp.com';
+// 'http://localhost:8080';
 
 const http = axios.create({
     baseURL: url,

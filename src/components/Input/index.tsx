@@ -3,10 +3,14 @@ import styles from '././Input.module.css';
 
 type InputProps = {
     placeholder: string,
-    type: string
+    type: string,
+    id: string,
+    name: string,
+    value: string,
+    onChange: string,
 };
 export const Input: React.FunctionComponent<InputProps> = (props) => {
     return (
-        <input type={props.type} className={styles.root} placeholder={props.placeholder}></input>
+        <input onChange={props.onChange} value={props.value} type={props.type} id={props.id} name={props.name} className={styles.root} placeholder={props.placeholder}></input>
     );
 };

@@ -7,6 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAdd, faSortDown, faArrowLeft, faSave} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
+import { GetServerSideProps } from 'next';
+import * as React from 'react';
+import { withAuth } from '../hof/withAuth';
+import http from '../utils/http';
+
 const projects = [
     {
         id: 0,
@@ -50,13 +55,18 @@ const projects = [
     }
 ]
 
-const TailwindcssPage: NextPage  = () => {
+interface projectCreateProps {
+    timestamp: string
+};
+const projectCreate: NextPage<projectCreateProps> = (props) => {
+    
 
     return (
-        <div className="content-between relative text-center">
+        <div>
+            <div className="content-between relative text-center">
             <div className='flex justify-between align-middle px-2 py-15 border-b-2 border-gray-300'>
-               <Link href="/projectList"><ButtonIcon><FontAwesomeIcon icon={faArrowLeft}/></ButtonIcon></Link>
-               <Link href="/projectList"><ButtonIcon><FontAwesomeIcon icon={faSave}/></ButtonIcon></Link>
+               <Link href="/projectCreate"><ButtonIcon><FontAwesomeIcon icon={faArrowLeft}/></ButtonIcon></Link>
+               <Link href="/projectCreate"><ButtonIcon><FontAwesomeIcon icon={faSave}/></ButtonIcon></Link>
             </div>
            
            <div className='mt-5 px-5 md:mx-24'>
@@ -72,9 +82,21 @@ const TailwindcssPage: NextPage  = () => {
            </div>
            
         </div>
-        
+        </div>
     );
-
 };
+    
+export const getServerSideProps = withAuth(async (ctx: GetServerSideProps , cookies: any, user: any) => {
+    
+    const { data } = await http.get("/moodbs/", {
+        headers: {
+            'token': `${cookies.token}`,
+        }
+    });
+    
+    return {
+        props: data
+    }
+});
 
-export default TailwindcssPage;
+export default projectCreate;
