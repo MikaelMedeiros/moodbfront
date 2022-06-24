@@ -7,7 +7,7 @@ type InputProps = {
     id: string,
     name: string,
     value: string,
-    onChange: string,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
 };
 export const Input: React.FunctionComponent<InputProps> = (props) => {
     return (
