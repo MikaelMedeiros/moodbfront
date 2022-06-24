@@ -14,6 +14,7 @@ import { toast } from '../components/Toast';
 import http from '../utils/http';
 
 import { projects } from '../dataFake/projects';
+import { ButtonSignOut } from '../components/ButtonSignout';
 
 interface projectListProps {
     timestamp: string
@@ -41,11 +42,12 @@ const projectList: NextPage<projectListProps> = (props) => {
     }
 
     return (
+        <>
         <div className="content-between relative text-center">
            
             <div className='flex justify-between align-middle px-2 py-15 border-b-2 border-gray-300'>
                 <ButtonIcon><FontAwesomeIcon icon={faSearch}/></ButtonIcon>
-                <Link href="/projectCreate"><ButtonIcon><FontAwesomeIcon icon={faAdd}/></ButtonIcon></Link>
+                <Link href="/projectCreate"><a><FontAwesomeIcon icon={faAdd}/></a></Link>
             </div>
         
             <div className='flex justify-center items-center'>
@@ -61,8 +63,10 @@ const projectList: NextPage<projectListProps> = (props) => {
                     </div>
                 )
             })}
-
         </div>
+        
+            <ButtonSignOut />
+        </>
     );
 };
 
