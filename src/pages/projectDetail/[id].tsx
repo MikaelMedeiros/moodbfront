@@ -1,24 +1,17 @@
 
 import type { NextPage } from 'next'
-import { Button } from '../components/Button';
-import { ButtonIcon } from '../components/ButtonIcon';
-import { Input } from '../components/Input';
+import { ButtonIcon } from '../../components/ButtonIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faAdd, faSortDown, faArrowLeft, faArrowRight, faSave} from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faSave} from '@fortawesome/free-solid-svg-icons';
 
-
-import Link from 'next/link';
- 
-import { projects } from '../dataFake/projects';
-
+import { projects } from '../../dataFake/projects';
 
 import { GetServerSideProps } from 'next';
 import {useState}from 'react';
-import { withAuth } from '../hof/withAuth';
-import http from '../utils/http';
-import { ButtonSignOut } from '../components/ButtonSignout';
-
-
+import { withAuth } from '../../hof/withAuth';
+import http from '../../utils/http';
+import { ButtonSignOut } from '../../components/ButtonSignout';
+import { LinkButton } from '../../components/LinkButton';
 
 interface projectDetailProps {
     timestamp: string
@@ -31,8 +24,8 @@ const projectDetail: NextPage<projectDetailProps> = (props) => {
         <>
             <div className="content-between relative text-center ">
             <div className='flex justify-between align-middle px-2 py-15 border-b-2 border-gray-300'>
-            <Link href="/projectList"><a><FontAwesomeIcon icon={faArrowLeft}/></a></Link>
-            <Link href="/projectDetail"><a><FontAwesomeIcon icon={faSave}/></a></Link>
+            <LinkButton href="/projectList"><FontAwesomeIcon icon={faArrowLeft}/></LinkButton>
+            <LinkButton href="/projectDetail"><FontAwesomeIcon icon={faSave}/></LinkButton>
             </div>
         
             <div className='flex justify-center items-center'>

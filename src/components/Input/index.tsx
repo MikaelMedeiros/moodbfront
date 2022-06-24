@@ -4,10 +4,10 @@ import styles from '././Input.module.css';
 type InputProps = {
     placeholder: string,
     type: string,
-    id: string,
-    name: string,
-    value: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    id?: string,
+    name?: string,
+    value?: string,
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
 };
 export const Input: React.FunctionComponent<InputProps> = (props) => {
     return (

@@ -1,0 +1,6 @@
+.root {
+    @apply rounded font-bold py-4 px-4 text-gray-400
+}
+.root:hover {
+    @apply text-gray-500
+}

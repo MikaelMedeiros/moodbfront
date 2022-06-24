@@ -15,56 +15,48 @@ import http from '../utils/http';
 
 import { projects } from '../dataFake/projects';
 import { ButtonSignOut } from '../components/ButtonSignout';
+import { LinkButton } from '../components/LinkButton';
+import { Project } from '../components/Projetc/Projetc';
 
+interface moodbListTypes {
+    id: number,
+    name: string,
+    subtitle: string,
+    image: Array<string>,
+
+}
 interface projectListProps {
-    timestamp: string
+    timestamp: string,
+    moodbList: Array<moodbListTypes>,
 };
 const projectList: NextPage<projectListProps> = (props) => {
 
     const router = useRouter();
-    const [data, setData] = useState(projects.moodbList);
 
-    
-    useEffect(() => {
-        getMoodb;
-
-    },[]);
-
-    async function getMoodb() {
-        try {
-            const { data } = await http.get("/moodbs/");
-            // setData(data);
-            console.log('oioi');
-        } catch (error: any) {
-            console.log(error)
-            toast.notify(error.response.data.error, 'error', 2000 );
-        }
-    }
 
     return (
         <>
-        <div className="content-between relative text-center">
-           
-            <div className='flex justify-between align-middle px-2 py-15 border-b-2 border-gray-300'>
-                <ButtonIcon><FontAwesomeIcon icon={faSearch}/></ButtonIcon>
-                <Link href="/projectCreate"><a><FontAwesomeIcon icon={faAdd}/></a></Link>
-            </div>
-        
-            <div className='flex justify-center items-center'>
-                <h1 className="text-gray-500 font-bold">MEUS PROJETOS</h1>
-                {/* <ButtonIcon><FontAwesomeIcon icon={faSortDown}/></ButtonIcon> */}
-            </div>
+            <div className="content-between relative text-center">
             
-            {data.map((item) => {
-                return (
-                    <div key={item.id} className='shadow-slate-300 mx-5 my-2 md:mx-24'>
-                        <Link href="/projectDetail"><p className='text-gray-500 text-left text-sm p-1 font-light cursor-pointer mt-'>{item.name}</p></Link>
-                        <div className='bg-gray-200 h-20 relative '></div>
-                    </div>
-                )
-            })}
-        </div>
-        
+                <div className='flex justify-between align-middle px-2 py-15 border-b-2 border-gray-300'>
+                    <ButtonIcon><FontAwesomeIcon icon={faSearch}/></ButtonIcon>
+                    <LinkButton href="/projectCreate" ><FontAwesomeIcon icon={faAdd}/></LinkButton>
+                </div>
+            
+                <div className='flex justify-center items-center'>
+                    <h1 className="text-gray-500 font-bold">MEUS PROJETOS</h1>
+                    {/* <ButtonIcon><FontAwesomeIcon icon={faSortDown}/></ButtonIcon> */}
+                </div>
+                { 
+                    (props.moodbList.length > 0)
+                    ?
+                    props.moodbList.map((item) => {
+                        return (
+                            <Project key={item.id} id={item.id} name={item.name} />
+                        )
+                    }) : <></>
+                }
+            </div>
             <ButtonSignOut />
         </>
     );
@@ -77,9 +69,12 @@ export const getServerSideProps = withAuth(async (ctx: GetServerSideProps , cook
             'token': `${cookies.token}`,
         }
     });
-    
+    console.log(data);
     return {
-        props: data
+        props: {
+            timestamp: data.timestamp,
+            moodbList: data.moodbList,
+        } 
     }
 });
 
