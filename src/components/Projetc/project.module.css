@@ -1,0 +1,6 @@
+.root {
+    @apply shadow-slate-300 mx-5 my-2 md:mx-24
+}
+.paragraph {
+    @apply text-gray-500 text-left text-sm p-1 font-light cursor-pointer
+}
