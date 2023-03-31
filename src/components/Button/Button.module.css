@@ -1,11 +1,51 @@
 .root {
-    @apply font-bold py-1 w-full font-light rounded-full
-}
-
-.primary {
-    @apply bg-gray-200  text-gray-500 hover:bg-gray-300 hover:text-gray-500
-}
-
-.secondary {
-    @apply bg-white text-gray-400 hover:bg-gray-100 border
-}
+    @apply font-bold py-1 w-full font-light rounded-full w-full  shadow-md;
+  }
+  
+  .primary {
+    @apply bg-gray-200 text-gray-500 hover:bg-gray-300 hover:text-gray-500;
+  }
+  
+  .primary:focus {
+    @apply outline-none bg-gray-300 text-gray-600;
+  }
+  
+  .primary:active {
+    @apply bg-gray-400 text-gray-700;
+  }
+  
+  .secondary {
+    @apply bg-white text-gray-400 hover:bg-gray-100 border;
+  }
+  
+  .secondary:focus {
+    @apply outline-none bg-gray-100 text-gray-500;
+  }
+  
+  .secondary:active {
+    @apply bg-gray-200 text-gray-600;
+  }
+  
+  .black {
+    @apply bg-black text-white py-2 px-4;
+  }
+  
+  .black:focus {
+    @apply outline-none bg-gray-800 text-white;
+  }
+  
+  .black:active {
+    @apply bg-gray-900;
+  }
+  
+  .white {
+    @apply bg-white text-black py-2 px-4;
+  }
+  
+  .white:focus {
+    @apply outline-none bg-gray-100 text-gray-500;
+  }
+  
+  .white:active {
+    @apply bg-gray-200 text-gray-600;
+  }
