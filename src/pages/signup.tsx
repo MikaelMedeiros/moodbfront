@@ -1,34 +1,61 @@
-import type { NextPage } from 'next'
-import { Button } from '../components/Button';
-import { Input } from '../components/Input';
+import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { Input } from '../components/Input';
+import { Button } from '../components/Button';
+import { Logo }  from '../assets/svg';
 
-const TailwindcssPage: NextPage  = () => {
+const Signup = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-    return (
-        <div className="flex flex-col justify-between text-center h-screen px-10 pt-14 pb-1 md:px-28">
-            <h1 className='text-gray-500 text-4xl align-baseline '>MoodB</h1>
-            <div>
-                <h2 className='text-gray-500 text-left text-xl font-medium font-sans'>Cadastre-se</h2>    
-                <div className="flex flex-col items-center space-y-2 mt-5">
-                    <Input type='text' placeholder='E-mail'></Input>
-                    <Input type='password' placeholder='Senha'></Input>
-                    <Input type='password' placeholder='Confirmar senha'></Input>
-                </div>
-                <div className='mt-10'>
-                    <Button><Link href=""><a>Cadastrar</a></Link></Button>
-                    <div className='mt-1'>
-                        <span className='text-gray-500 font-normal text-xs'>ou </span>
-                        <Link href="/signin"><a className='text-gray-500 font-normal text-xs'>Faça login</a></Link>
-                    </div>
-                </div>
-            </div>
-            <div className='text-xs italic text-gray-500 '>
-                &copy;2022 Powered by YSNP. All rights reserved.
-            </div>
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // aqui você pode realizar a lógica para enviar os dados do formulário para o servidor
+  };
+
+  return (
+    <div className="bg-white h-screen flex flex-col justify-evenly items-center">
+      <Image src={Logo} height={35} width={200} alt="Logo" />
+      <form onSubmit={handleSubmit} className="flex flex-col h-80 w-72 justify-around items-center">
+        <h1 className="font-[600] text-gray-700 text-xl ">Criar a sua conta:</h1>
+        <div className="flex flex-col w-full">
+          <Input value={name} onChange={handleNameChange} placeholder="Nome:" type="text" id="name" name="name" />
+          <div className="flex items-center border-b border-gray-500 mb-3" />
+          <Input value={email} onChange={handleEmailChange} placeholder="E-mail:" type="email" id="email" name="email" />
+          <div className="flex items-center border-b border-gray-500 mb-3" />
+          <Input value={password} onChange={handlePasswordChange} placeholder="Senha:" type="password" id="password" name="password" />
+          <div className="flex items-center border-b border-gray-500 mb-3" />
+          <Input value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="Confirmar senha:" type="password" id="confirm_password" name="confirm_password" />
+          <div className="flex items-center border-b border-gray-500 mb-3" />
         </div>
-    );
-
+        <Button type="submit" variant="black">
+          Entrar
+        </Button>
+        <span className="text-xs">
+            Já é membro? Então <Link href="/signin"><strong className=' cursor-pointer' >faça o login.</strong></Link>
+        </span>
+      </form>
+    </div>
+  );
 };
 
-export default TailwindcssPage;
+export default Signup;
