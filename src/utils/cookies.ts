@@ -9,7 +9,7 @@ export function parseCookies(req?: any) {
 
 export function setCookie(
     key: string,
-    value: string | object,
+    value: string,
     options?: Cookies.CookieAttributes
 ) {
     Cookies.set(key, value, {

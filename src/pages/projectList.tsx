@@ -18,7 +18,7 @@ import { projects } from '../dataFake/projects';
 interface projectListProps {
     timestamp: string
 };
-const projectList: NextPage<projectListProps> = (props) => {
+const ProjectList: NextPage<projectListProps> = (props) => {
 
     const router = useRouter();
     const [data, setData] = useState(projects.moodbList);
@@ -79,4 +79,4 @@ export const getServerSideProps = withAuth(async (ctx: GetServerSideProps , cook
     }
 });
 
-export default projectList;
+export default ProjectList;

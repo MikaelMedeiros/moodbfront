@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { setCookie } from '../../utils/cookies';
-import { httpExtern } from '../../utils/http';
+import  httpExtern from '../../utils/http';
 
 type Data = {
   name: string

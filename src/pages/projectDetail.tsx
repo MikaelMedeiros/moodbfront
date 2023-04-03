@@ -22,7 +22,7 @@ import http from '../utils/http';
 interface projectDetailProps {
     timestamp: string
 };
-const projectDetail: NextPage<projectDetailProps> = (props) => {
+const ProjectDetail: NextPage<projectDetailProps> = (props) => {
     
     const [data, setData] = useState(projects.moodbList);
     
@@ -76,7 +76,7 @@ export const getServerSideProps = withAuth(async (ctx: GetServerSideProps , cook
     }
 });
 
-export default projectDetail;
+export default ProjectDetail;
 
 
 
